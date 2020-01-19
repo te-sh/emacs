@@ -13,6 +13,11 @@
 ;; packages for behaviours
 ;;------------------------------
 
+(when (eq system-type 'darwin)
+  (use-package exec-path-from-shell
+    :config
+    (exec-path-from-shell-initialize)))
+
 (use-package solarized-theme
   :config
   (load-theme 'solarized-light t))
