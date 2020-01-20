@@ -58,6 +58,8 @@
   (global-flycheck-mode))
 
 (use-package flycheck-d-unittest
+  :custom
+  (flycheck-dmd-include-path '("~/projects/procon2/codes-d"))
   :config
   (setup-flycheck-d-unittest))
 
