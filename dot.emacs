@@ -13,10 +13,10 @@
 ;; packages for behaviours
 ;;------------------------------
 
-(when (eq system-type 'darwin)
-  (use-package exec-path-from-shell
-    :config
-    (exec-path-from-shell-initialize)))
+(use-package exec-path-from-shell
+  :if (eq system-type 'darwin)
+  :config
+  (exec-path-from-shell-initialize))
 
 (use-package solarized-theme
   :config
@@ -28,7 +28,8 @@
   :config
   (ivy-mode 1))
 
-(use-package ivy-hydra)
+(use-package ivy-hydra
+  :after (ivy))
 
 (use-package counsel
   :diminish counsel-mode
@@ -67,7 +68,10 @@
   :config
   (yas-global-mode 1))
 
-(use-package vterm)
+(use-package vterm
+  :config
+  (when (eq system-type 'darwin)
+    (setq vterm-shell "/bin/zsh")))
 
 ;;------------------------------
 ;; packages for modes
