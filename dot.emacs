@@ -114,6 +114,13 @@
 ;; packages for modes
 ;;------------------------------
 
+(use-package coffee-mode)
+
+(use-package css-mode
+  :ensure nil
+  :custom
+  (css-indent-offset 2))
+
 (use-package crystal-mode
   :mode "\\.cr\\'")
 
@@ -122,7 +129,12 @@
 (use-package dockerfile-mode
   :mode "Dockerfile\\'")
 
-(use-package json-mode)
+(use-package json-mode
+  :init
+  (add-hook 'json-mode-hook
+            (lambda ()
+              (make-local-variable 'js-indent-level)
+              (setq js-indent-level 2))))
 
 (use-package markdown-mode
   :mode "\\.md\\'"
@@ -130,6 +142,14 @@
   (markdown-enable-math t))
 
 (use-package nim-mode)
+
+(use-package web-mode
+  :mode
+  (("\\.jsx\\'" . web-mode)
+   ("\\.html\\(\\.erb\\)?\\'" . web-mode))
+  :custom
+  (web-mode-code-indent-offset 2)
+  (web-mode-markup-indent-offset 2))
 
 (use-package yaml-mode
   :mode "\\.yml\\'")
