@@ -129,6 +129,8 @@
 (use-package dockerfile-mode
   :mode "Dockerfile\\'")
 
+(use-package go-mode)
+
 (use-package groovy-mode
   :mode "\\.gradle\\'")
 
