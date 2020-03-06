@@ -2,7 +2,7 @@
 ;; appearance
 ;;==============================
 
-;; initial frame settings
+;; Initial Frame Settings
 (when (eq system-type 'darwin)
   (create-fontset-from-ascii-font
    "Menlo-14:weight=normal:slant=normal"
@@ -80,6 +80,10 @@
 
 (use-package wgrep)
 
+(use-package indent-guide
+  :config
+  (indent-guide-global-mode))
+
 (use-package magit
   :bind ("C-c g" . magit-status)
   :custom
@@ -93,7 +97,8 @@
 
 (use-package flycheck
   :config
-  (global-flycheck-mode))
+  (global-flycheck-mode)
+  (flycheck-add-mode 'javascript-eslint 'web-mode))
 
 (use-package flycheck-d-unittest
   :custom
@@ -129,8 +134,19 @@
 (use-package dockerfile-mode
   :mode "Dockerfile\\'")
 
+(use-package go-mode
+  :custom
+  (tab-width 4))
+
 (use-package groovy-mode
   :mode "\\.gradle\\'")
+
+(use-package json-mode
+  :init
+  (add-hook 'js-mode-hook
+            (lambda ()
+              (make-local-variable 'js-indent-level)
+              (setq js-indent-level 2))))
 
 (use-package json-mode
   :init
