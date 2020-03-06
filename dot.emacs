@@ -81,9 +81,12 @@
 
 (use-package wgrep)
 
-(use-package indent-guide
-  :config
-  (indent-guide-global-mode))
+(use-package highlight-indent-guides
+  :hook
+  ((yaml-mode web-mode) . highlight-indent-guides-mode)
+  :custom
+  (highlight-indent-guides-responsive t)
+  (highlight-indent-guides-method 'character))
 
 (use-package magit
   :bind ("C-c g" . magit-status)
@@ -144,13 +147,6 @@
 
 (use-package json-mode
   :init
-  (add-hook 'js-mode-hook
-            (lambda ()
-              (make-local-variable 'js-indent-level)
-              (setq js-indent-level 2))))
-
-(use-package json-mode
-  :init
   (add-hook 'json-mode-hook
             (lambda ()
               (make-local-variable 'js-indent-level)
@@ -177,6 +173,11 @@
 ;;==============================
 ;; other settings
 ;;==============================
+
+(add-hook 'js-mode-hook
+            (lambda ()
+              (make-local-variable 'js-indent-level)
+              (setq js-indent-level 2)))
 
 ;; add snippets for procon
 (add-to-list 'yas-snippet-dirs "~/projects/procon2/emacs/snippets")
