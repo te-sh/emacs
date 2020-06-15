@@ -26,6 +26,14 @@
 
   (setq face-font-rescale-alist '(("Hiragino.*" . 1.2))))
 
+(when (eq system-type 'gnu/linux)
+  (setq default-frame-alist
+        (append (list
+                 '(font . "HackGen35-11")
+                 '(width . 120)
+                 '(height . 50))
+                default-frame-alist)))
+
 ;;==============================
 ;; key config
 ;;==============================
@@ -51,10 +59,14 @@
 ;; packages for behaviours
 ;;------------------------------
 
+(use-package diminish)
+
 (use-package exec-path-from-shell
-  :if (eq system-type 'darwin)
   :config
   (exec-path-from-shell-initialize))
+
+(use-package add-node-modules-path
+  :hook (js-mode web-mode))
 
 (use-package solarized-theme
   :config
@@ -86,7 +98,7 @@
   ((yaml-mode web-mode) . highlight-indent-guides-mode)
   :custom
   (highlight-indent-guides-responsive t)
-  (highlight-indent-guides-method 'character))
+  (highlight-indent-guides-method 'bitmap))
 
 (use-package magit
   :bind ("C-c g" . magit-status)
