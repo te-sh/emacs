@@ -171,6 +171,10 @@
 
 (use-package nim-mode)
 
+(use-package restclient)
+
+(use-package rspec-mode)
+
 (use-package web-mode
   :mode
   (("\\.jsx\\'" . web-mode)
