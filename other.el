@@ -15,3 +15,11 @@
             (lambda ()
               (make-local-variable 'js-indent-level)
               (setq js-indent-level 2)))
+
+;; customize variables
+(custom-set-variables
+ '(create-lockfiles nil)
+ '(indent-tabs-mode nil)
+ '(make-backup-files nil)
+ '(ruby-insert-encoding-magic-comment nil)
+ '(tool-bar-mode nil))
