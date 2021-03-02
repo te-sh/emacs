@@ -23,7 +23,7 @@
                  '(height . 50))
                 default-frame-alist))
 
-  (setq face-font-rescale-alist '(("Hiragino.*" . 1.2))))
+  (setq face-font-rescale-alist '(("Hiragino.*" . 0.99))))
 
 (when (eq system-type 'gnu/linux)
   (setq default-frame-alist
