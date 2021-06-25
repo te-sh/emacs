@@ -14,7 +14,9 @@
 (add-hook 'js-mode-hook
             (lambda ()
               (make-local-variable 'js-indent-level)
-              (setq js-indent-level 2)))
+              (setq js-indent-level 2)
+              (make-local-variable 'js-switch-indent-offset)
+              (setq js-switch-indent-offset 2)))
 
 ;; customize variables
 (custom-set-variables
