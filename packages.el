@@ -49,7 +49,7 @@
 
 (use-package highlight-indent-guides
   :hook
-  ((yaml-mode web-mode) . highlight-indent-guides-mode)
+  ((crystal-mode web-mode yaml-mode) . highlight-indent-guides-mode)
   :custom
   (highlight-indent-guides-responsive t)
   (highlight-indent-guides-method 'bitmap))
@@ -69,6 +69,8 @@
   :config
   (global-flycheck-mode)
   (flycheck-add-mode 'javascript-eslint 'web-mode))
+
+(use-package flycheck-crystal)
 
 (use-package flycheck-d-unittest
   :custom
