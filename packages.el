@@ -129,7 +129,10 @@
 
 (use-package restclient)
 
-(use-package rjsx-mode)
+(use-package rjsx-mode
+  :custom
+  (js2-strict-missing-semi-warning nil)
+  (js2-missing-semi-one-line-override nil))
 
 (use-package rspec-mode)
 
