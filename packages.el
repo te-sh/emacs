@@ -129,12 +129,13 @@
 
 (use-package restclient)
 
+(use-package rjsx-mode)
+
 (use-package rspec-mode)
 
 (use-package web-mode
   :mode
-  (("\\.jsx\\'" . web-mode)
-   ("\\.html\\(\\.erb\\)?\\'" . web-mode))
+  (("\\.html\\(\\.erb\\)?\\'" . web-mode))
   :custom
   (web-mode-code-indent-offset 2)
   (web-mode-markup-indent-offset 2))
