@@ -132,7 +132,9 @@
 (use-package rjsx-mode
   :custom
   (js2-strict-missing-semi-warning nil)
-  (js2-missing-semi-one-line-override nil))
+  (js2-missing-semi-one-line-override nil)
+  :custom-face
+  (rjsx-attr ((t . (:inherit font-lock-type-face)))))
 
 (use-package rspec-mode)
 
