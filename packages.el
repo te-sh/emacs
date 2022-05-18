@@ -133,6 +133,7 @@
   :custom
   (js2-strict-missing-semi-warning nil)
   (js2-missing-semi-one-line-override nil)
+  (js-switch-indent-offset 2)
   :custom-face
   (rjsx-attr ((t . (:inherit font-lock-type-face)))))
 

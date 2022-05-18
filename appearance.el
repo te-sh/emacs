@@ -28,7 +28,7 @@
 (when (eq system-type 'gnu/linux)
   (setq default-frame-alist
         (append (list
-                 '(font . "HackGen35-11")
+                 '(font . "HackGen35-12")
                  '(width . 120)
                  '(height . 50))
                 default-frame-alist)))
