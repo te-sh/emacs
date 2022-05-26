@@ -17,6 +17,8 @@
 
 (use-package exec-path-from-shell
   :config
+  (when (eq system-type 'darwin)
+    (setq shell-file-name "/bin/zsh"))
   (exec-path-from-shell-initialize))
 
 (use-package add-node-modules-path
