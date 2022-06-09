@@ -115,6 +115,9 @@
 (use-package groovy-mode
   :mode "\\.gradle\\'")
 
+(use-package js2-mode
+  :mode "\\.[m]?js\\'")
+
 (use-package json-mode
   :init
   (add-hook 'json-mode-hook
