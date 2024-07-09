@@ -93,6 +93,9 @@
 ;; packages for modes
 ;;------------------------------
 
+(use-package astro-ts-mode
+  :mode "\\.astro\\'")
+
 (use-package coffee-mode)
 
 (use-package css-mode
