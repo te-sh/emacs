@@ -112,14 +112,6 @@
 
 (use-package restclient)
 
-(use-package rjsx-mode
-  :custom
-  (js2-strict-missing-semi-warning nil)
-  (js2-missing-semi-one-line-override nil)
-  (js-switch-indent-offset 2)
-  :custom-face
-  (rjsx-attr ((t . (:inherit font-lock-type-face)))))
-
 (use-package rspec-mode)
 
 (use-package web-mode
@@ -152,6 +144,7 @@
                        "split_parser" "tree-sitter-markdown/src")
              (markdown-inline "https://github.com/tree-sitter-grammars/tree-sitter-markdown"
                               "split_parser" "tree-sitter-markdown-inline/src")
+             (ruby "https://github.com/tree-sitter/tree-sitter-ruby")
              (tsx "https://github.com/tree-sitter/tree-sitter-typescript" "master" "tsx/src")
              (typescript "https://github.com/tree-sitter/tree-sitter-typescript" "master" "typescript/src")
              (yaml "https://github.com/ikatyang/tree-sitter-yaml")))
@@ -176,6 +169,9 @@
   (:file-match "\\.m?js\\'")
   (:mode-remap javascript-mode))
 
+(setup js-jsx-mode
+  (:file-match "\\.jsx\\'"))
+
 (setup json-ts-mode
   (:file-match "\\.json\\'")
   (:option js-indent-level 2))
@@ -184,6 +180,9 @@
   (:package markdown-ts-mode)
   (:autoload-this)
   (:file-match "\\.md\\'"))
+
+(setup ruby-ts-mode
+  (:mode-remap ruby-mode))
 
 (setup typescript-ts-mode
   (:file-match "\\.ts\\'"))

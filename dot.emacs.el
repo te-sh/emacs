@@ -1,3 +1,4 @@
+;; load some subsetting
 (load "~/.emacs.d/appearance")
 (load "~/.emacs.d/packages")
 (load "~/.emacs.d/other")
