@@ -93,9 +93,6 @@
 ;; packages for modes
 ;;------------------------------
 
-(use-package astro-ts-mode
-  :mode "\\.astro\\'")
-
 (use-package coffee-mode)
 
 (use-package css-mode
@@ -108,30 +105,8 @@
 
 (use-package d-mode)
 
-(use-package dockerfile-mode
-  :mode "Dockerfile\\'")
-
-(use-package go-mode
-  :custom
-  (tab-width 4))
-
 (use-package groovy-mode
   :mode "\\.gradle\\'")
-
-(use-package js2-mode
-  :mode "\\.[m]?js\\'")
-
-(use-package json-mode
-  :init
-  (add-hook 'json-mode-hook
-            (lambda ()
-              (make-local-variable 'js-indent-level)
-              (setq js-indent-level 2))))
-
-(use-package markdown-mode
-  :mode "\\.md\\'"
-  :custom
-  (markdown-enable-math t))
 
 (use-package nim-mode)
 
@@ -154,5 +129,64 @@
   (web-mode-code-indent-offset 2)
   (web-mode-markup-indent-offset 2))
 
-(use-package yaml-mode
-  :mode "\\.yml\\'")
+;;==============================
+;; treesit
+;;==============================
+
+(package-install 'setup)
+(require 'setup)
+
+(setup-define :mode-remap
+  (lambda (src-mode)
+    `(add-to-list 'major-mode-remap-alist '(,src-mode . ,(setup-get 'feature)))))
+
+(setup treesit
+  (:option treesit-language-source-alist
+           '((astro "https://github.com/virchau13/tree-sitter-astro")
+             (css "https://github.com/tree-sitter/tree-sitter-css")
+             (dockerfile "https://github.com/camdencheek/tree-sitter-dockerfile")
+             (go "https://github.com/tree-sitter/tree-sitter-go")
+             (javascript "https://github.com/tree-sitter/tree-sitter-javascript" "master" "src")
+             (json "https://github.com/tree-sitter/tree-sitter-json")
+             (markdown "https://github.com/tree-sitter-grammars/tree-sitter-markdown"
+                       "split_parser" "tree-sitter-markdown/src")
+             (markdown-inline "https://github.com/tree-sitter-grammars/tree-sitter-markdown"
+                              "split_parser" "tree-sitter-markdown-inline/src")
+             (tsx "https://github.com/tree-sitter/tree-sitter-typescript" "master" "tsx/src")
+             (typescript "https://github.com/tree-sitter/tree-sitter-typescript" "master" "typescript/src")
+             (yaml "https://github.com/ikatyang/tree-sitter-yaml")))
+  (mapc (lambda (lang)
+          (unless (treesit-language-available-p lang nil)
+            (treesit-install-language-grammar lang)))
+        (mapcar #'car treesit-language-source-alist)))
+
+(setup astro-ts-mode
+  (:package astro-ts-mode)
+  (:file-match "\\.astro\\'"))
+
+(setup dockerfile-ts-mode
+  (:file-match "[/\\]\\(?:Containerfile\\|Dockerfile\\)\\(?:\\.[^/\\]*\\)?\\'"))
+
+(setup go-ts-mode
+  (:file-match "\\.go\\'")
+  (:option go-ts-mode-indent-offset 4)
+  (:option tab-width 4))
+
+(setup js-ts-mode
+  (:file-match "\\.m?js\\'")
+  (:mode-remap javascript-mode))
+
+(setup json-ts-mode
+  (:file-match "\\.json\\'")
+  (:option js-indent-level 2))
+
+(setup markdown-ts-mode
+  (:package markdown-ts-mode)
+  (:autoload-this)
+  (:file-match "\\.md\\'"))
+
+(setup typescript-ts-mode
+  (:file-match "\\.ts\\'"))
+
+(setup yaml-ts-mode
+  (:file-match "\\.ya?ml\\'"))
